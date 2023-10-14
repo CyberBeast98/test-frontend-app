@@ -8,8 +8,9 @@ export default {
   name: 'HeaderComponent',
 }
 </script>
-<style>
+<style scoped>
 header {
+  position: sticky;
   padding: 20px 0;
   background-color: #FFFFFF;
 }

@@ -10,7 +10,7 @@ export default {
   name: 'NavigationMenu'
 }
 </script>
-<style>
+<style scoped>
 .navigation {
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ export default {
   box-shadow: 10px 0 32px -7px rgba(0,0,0,0.75);
   height: 100vh;
 }
+
 .navigation__link {
   border-bottom: 2px solid transparent;
   text-transform: uppercase;

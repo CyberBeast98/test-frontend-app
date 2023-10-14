@@ -1,3 +1,5 @@
+import monitor from './assets/monitor.jpg'
+
 export const orders = [
   {
     id: 1,
@@ -27,7 +29,7 @@ export const products = [
     id: 1,
     serialNumber: 1234,
     isNew: 1,
-    photo: 'pathToFile.jpg',
+    photo: monitor,
     title: 'Product 1',
     type: 'Monitors',
     specification: 'Specification 1',
@@ -46,10 +48,10 @@ export const products = [
     id: 2,
     serialNumber: 1234,
     isNew: 1,
-    photo: 'pathToFile.jpg',
+    photo: monitor,
     title: 'Product 1',
     type: 'Monitors',
-    specification: 'Specification 1',
+    specification: 'Specification 2',
     guarantee: {
       start: '2017-06-29 12:09:33',
       end: '2017-06-29 12:09:33'

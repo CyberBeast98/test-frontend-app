@@ -35,11 +35,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background-color: #BBBFC2;
-  height: 100vh;
+  height: 100%;
 }
 
 li {
   list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .flex {

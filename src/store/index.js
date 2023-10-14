@@ -6,7 +6,10 @@ const store = createStore({
     orders: [],
     products: [],
     ordersCount: null,
-    productsCount: null
+    productsCount: null,
+    id: null,
+    product: null,
+    isShowPopup: false
   },
   actions: {
     getOrders(context) {
@@ -34,6 +37,15 @@ const store = createStore({
     },
     setProductsCount(state, data) {
       state.productsCount = data
+    },
+    setId(state, data) {
+      state.id = data
+    },
+    setProduct(state, data) {
+      state.product = data
+    },
+    setShowPopup(state, data) {
+      state.isShowPopup = data
     }
   }
 });
