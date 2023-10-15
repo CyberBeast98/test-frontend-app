@@ -14,6 +14,7 @@
       <button class="delete-popup__button delete-popup__button--delete" @click="deleteProduct(id)">Delete</button>
     </footer>
   </div>
+  <div class="blur-background"></div>
 </template>
 
 <script>
@@ -54,6 +55,7 @@ export default {
   width: 700px;
   background-color: #FFFFFF;
   border-radius: 4px;
+  z-index: 2;
 }
 
 .delete-popup__image {
@@ -101,5 +103,16 @@ export default {
   padding: 10px 20px;
   border-radius: 20px;
   margin-left: 15px;
+}
+
+.blur-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 60%;
+  z-index: 1;
 }
 </style>

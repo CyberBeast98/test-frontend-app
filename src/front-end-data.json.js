@@ -50,7 +50,7 @@ export const products = [
     isNew: 1,
     photo: monitor,
     title: 'Product 1',
-    type: 'Monitors',
+    type: 'Mouse',
     specification: 'Specification 2',
     guarantee: {
       start: '2017-06-29 12:09:33',

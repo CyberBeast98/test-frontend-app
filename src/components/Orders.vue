@@ -1,11 +1,11 @@
 <template>
   <div class="order__container">
-    <input type="text" v-model="text">
     <ul class="order">
-      <li v-for="order in sortOrders" :key="order.id" class="order__item">
-        <span class="order__title">{{order.title}}</span>
-        <span class="order__description">{{order.description}}</span>
+      <li v-for="order in orders" :key="order.id" class="order__item">
+        <span>{{order.title}}</span>
+        <span>{{order.description}}</span>
         <DateComponent :date="order.date"/>
+        <button>Open</button>
       </li>
     </ul>
   </div>
@@ -17,21 +17,13 @@ import DateComponent from "@/components/Date";
 
 export default {
   name: 'OrdersComponent',
-  components: {DateComponent},
-  data() {
-    return { text: '' }
-  },
+  components: { DateComponent },
   computed: {
     ...mapState({
       orders(state) {
         return state.orders;
       }
-    }),
-    sortOrders() {
-      if (this.text.length > 0) return this.orders.filter(i => i.title.includes(this.text))
-
-      return this.orders
-    }
+    })
   }
 }
 </script>
@@ -57,7 +49,7 @@ export default {
   background-color: #FFFFFF;
 }
 
-.order__title {
+.order__item span {
   width: 20%;
 }
 </style>

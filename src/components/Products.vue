@@ -1,33 +1,40 @@
 <template>
-  <ul class="product">
-    <li v-for="product in products" :key="product.id" class="product__item">
-      <img class="product__image" :src="product.photo" alt="photo">
-      <span>{{product.title}}</span>
-      <span>{{product.type}}</span>
-      <span>{{product.specification}}</span>
-      <div class="product__guarantee">
-        <span> Start: {{product.guarantee.start}}</span>
-        <span> End: {{product.guarantee.end}}</span>
-      </div>
-      <div class="product__price">
-        <span>{{product.price[0].value}}{{product.price[0].symbol}}</span>
-        <span>{{product.price[1].value}}{{product.price[1].symbol}}</span>
-      </div>
-      <button @click="showPopup(product.id, product)">
-        <img src="../assets/icons/delete.svg" alt="delete-img">
-      </button>
-    </li>
-    <DeletePopup v-if="isShowPopup"/>
-  </ul>
+  <div class="products__container">
+    <div class="flex">
+      <h2>Products / {{ sorting.length }}</h2>
+      <SortSelect :products="products" />
+    </div>
+    <ul class="product">
+      <li v-for="product in sorting" :key="product.id" class="product__item">
+        <img class="product__image" :src="product.photo" alt="photo">
+        <span>{{product.title}}</span>
+        <span>{{product.type}}</span>
+        <span>{{product.specification}}</span>
+        <div class="product__guarantee">
+          <span> Start: {{product.guarantee.start}}</span>
+          <span> End: {{product.guarantee.end}}</span>
+        </div>
+        <div class="product__price">
+          <span>{{product.price[0].value}}{{product.price[0].symbol}}</span>
+          <span>{{product.price[1].value}}{{product.price[1].symbol}}</span>
+        </div>
+        <button @click="showPopup(product.id, product)">
+          <img src="../assets/icons/delete.svg" alt="delete-img">
+        </button>
+      </li>
+      <DeletePopup v-if="isShowPopup"/>
+    </ul>
+  </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import DeletePopup  from "@/components/DeletePopup";
+import SortSelect from "@/components/SortSelect";
 
 export default {
   name: 'ProductsComponent',
-  components: {DeletePopup},
+  components: {SortSelect, DeletePopup},
   computed: {
     ...mapState({
       products(state) {
@@ -35,8 +42,19 @@ export default {
       },
       isShowPopup(state) {
         return state.isShowPopup;
+      },
+      selectedOption(state) {
+        return state.selectedOption;
+      },
+      sortedProducts(state) {
+        return state.sortedProducts;
       }
-    })
+    }),
+    sorting() {
+      if (this.selectedOption !== '') return this.sortedProducts.filter(i => i.type.includes(this.selectedOption))
+
+      return this.products
+    }
   },
   methods: {
     showPopup(id, product) {
@@ -48,6 +66,12 @@ export default {
 }
 </script>
 <style scoped>
+.products__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 .product__item {
   display: flex;
   align-items: center;

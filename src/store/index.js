@@ -5,11 +5,11 @@ const store = createStore({
   state: {
     orders: [],
     products: [],
-    ordersCount: null,
-    productsCount: null,
     id: null,
     product: null,
-    isShowPopup: false
+    isShowPopup: false,
+    selectedOption: '',
+    sortedProducts: []
   },
   actions: {
     getOrders(context) {
@@ -18,11 +18,8 @@ const store = createStore({
     getProducts(context) {
       context.commit('setProducts', products);
     },
-    getOrdersCount(context) {
-      context.commit('setOrdersCount', orders.length)
-    },
-    getProductsCount(context) {
-      context.commit('setOrdersCount', products.length)
+    getSortedProducts(context) {
+      context.commit('setSortedProducts', products)
     }
   },
   mutations: {
@@ -32,12 +29,6 @@ const store = createStore({
     setProducts(state, data) {
       state.products = data
     },
-    setOrdersCount(state, data) {
-      state.ordersCount = data
-    },
-    setProductsCount(state, data) {
-      state.productsCount = data
-    },
     setId(state, data) {
       state.id = data
     },
@@ -46,6 +37,12 @@ const store = createStore({
     },
     setShowPopup(state, data) {
       state.isShowPopup = data
+    },
+    setSortedProducts(state, data) {
+      state.sortedProducts = data
+    },
+    setSelectedOption(state, data) {
+      state.selectedOption = data
     }
   }
 });

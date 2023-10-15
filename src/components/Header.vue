@@ -1,11 +1,15 @@
 <template>
-  <header>Hello</header>
+  <header>
+    <DateComponent :date="new Date()" :isHeader="true"/>
+  </header>
 </template>
 
 <script>
 
+import DateComponent from "@/components/Date";
 export default {
   name: 'HeaderComponent',
+  components: {DateComponent},
 }
 </script>
 <style scoped>
