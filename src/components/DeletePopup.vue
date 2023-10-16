@@ -46,6 +46,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .delete-popup {
   position: absolute;
@@ -61,7 +62,6 @@ export default {
 .delete-popup__image {
   width: 50px;
 }
-
 
 .delete-popup__header {
   position: relative;

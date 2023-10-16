@@ -1,7 +1,7 @@
 <template>
-  <div class="products__container">
-    <div class="flex">
-      <h2>Products / {{ sorting.length }}</h2>
+  <div class="container">
+    <div class="counter__block">
+      <h2 class="counter">Products / {{ sorting.length }}</h2>
       <SortSelect :products="products" />
     </div>
     <ul class="product">
@@ -10,11 +10,11 @@
         <span>{{product.title}}</span>
         <span>{{product.type}}</span>
         <span>{{product.specification}}</span>
-        <div class="product__guarantee">
+        <div class="product__block">
           <span> Start: {{product.guarantee.start}}</span>
           <span> End: {{product.guarantee.end}}</span>
         </div>
-        <div class="product__price">
+        <div class="product__block">
           <span>{{product.price[0].value}}{{product.price[0].symbol}}</span>
           <span>{{product.price[1].value}}{{product.price[1].symbol}}</span>
         </div>
@@ -66,26 +66,44 @@ export default {
 }
 </script>
 <style scoped>
-.products__container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 100px 100px 0;
 }
+
 .product__item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
   padding: 20px;
   background-color: #FFFFFF;
-  margin: 10px;
   border-radius: 4px;
+}
+
+.counter__block {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-bottom: 50px;
+}
+
+.counter {
+  margin-right: 30px;
+}
+
+.product {
+  width: 100%;
 }
 
 .product__item span {
   margin: 0 20px;
 }
 
-.product__guarantee, .product__price {
+.product__block {
   display: flex;
   flex-direction: column;
   margin: 0 20px;
