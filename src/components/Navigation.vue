@@ -13,14 +13,14 @@ export default {
 
 <style scoped>
 .navigation {
-  width: 200px;
+  min-width: 200px;
   background-color: #FFFFFF;
   box-shadow: 10px 0 32px -7px rgba(0,0,0,0.75);
   padding: 30px 0;
 }
 
 .navigation__link {
-  color: #000000;
+  color: #36454d;
   font-weight: 600;
   margin-bottom: 15px;
   border-bottom: 2px solid transparent;

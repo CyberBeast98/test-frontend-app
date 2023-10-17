@@ -9,7 +9,7 @@ import DateComponent from "@/components/Date";
 
 export default {
   name: 'TopMenu',
-  components: {DateComponent},
+  components: { DateComponent },
 }
 </script>
 

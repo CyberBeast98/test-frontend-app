@@ -28,7 +28,6 @@ export default {
 
       return `${date}`;
     },
-
     weekday() {
       const weekday =  new Date(this.date).toLocaleDateString('en-US', {
         weekday: 'long',
@@ -36,7 +35,6 @@ export default {
 
       return `${weekday}`;
     },
-
     formattedTime() {
       const time =  new Date(this.date).toLocaleTimeString('en-US', {
         hour12: false,

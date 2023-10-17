@@ -5,15 +5,15 @@
         <span>{{order.title}}</span>
         <span>{{order.description}}</span>
         <DateComponent :date="order.date"/>
-        <button>Open</button>
+        <button @click="order.getProducts()">Open</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import DateComponent from "@/components/Date";
+import { mapState }   from 'vuex';
+import DateComponent  from "@/components/Date";
 
 export default {
   name: 'OrdersComponent',

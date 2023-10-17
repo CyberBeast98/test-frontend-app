@@ -6,20 +6,35 @@
     </div>
     <ul class="product">
       <li v-for="product in sorting" :key="product.id" class="product__item">
-        <img class="product__image" :src="product.photo" alt="photo">
-        <span>{{product.title}}</span>
-        <span>{{product.type}}</span>
-        <span>{{product.specification}}</span>
-        <div class="product__block">
-          <span> Start: {{product.guarantee.start}}</span>
-          <span> End: {{product.guarantee.end}}</span>
+        <div class="product__block product__block--row">
+          <img class="product__image" :src="product.photo" alt="photo">
+          <div class="product__block">
+            <span class="product__text">{{product.title}}</span>
+            <span class="product__text product__text--number">{{product.serialNumber}}</span>
+          </div>
         </div>
         <div class="product__block">
-          <span>{{product.price[0].value}}{{product.price[0].symbol}}</span>
-          <span>{{product.price[1].value}}{{product.price[1].symbol}}</span>
+          <span class="product__text">{{product.type}}</span>
+        </div>
+        <div class="product__block">
+          <span class="product__text">Start: {{product.guarantee.start}}</span>
+          <span class="product__text">End: {{product.guarantee.end}}</span>
+        </div>
+        <div class="product__block">
+          <span class="product__text">{{ product.isNew === 1 ? 'new' : 'used'}}</span>
+        </div>
+        <div class="product__block">
+          <p class="product__text product__text--small">
+            <span>{{product.price[0].value}}</span>
+            <span class="product__text--small">{{product.price[0].symbol}}</span>
+          </p>
+          <p class="product__text">
+            <span>{{product.price[1].value}}</span>
+            <span class="product__text--small">{{product.price[1].symbol}}</span>
+          </p>
         </div>
         <button @click="showPopup(product.id, product)">
-          <img src="../assets/icons/delete.svg" alt="delete-img">
+          <img src="../../assets/icons/delete.svg" alt="delete-img">
         </button>
       </li>
       <DeletePopup v-if="isShowPopup"/>
@@ -30,11 +45,11 @@
 <script>
 import { mapState } from "vuex";
 import DeletePopup  from "@/components/DeletePopup";
-import SortSelect from "@/components/SortSelect";
+import SortSelect   from "@/components/SortSelect";
 
 export default {
   name: 'ProductsComponent',
-  components: {SortSelect, DeletePopup},
+  components: { SortSelect, DeletePopup },
   computed: {
     ...mapState({
       products(state) {
@@ -51,7 +66,7 @@ export default {
       }
     }),
     sorting() {
-      if (this.selectedOption !== '') return this.sortedProducts.filter(i => i.type.includes(this.selectedOption))
+      if (this.selectedOption !== '') return this.sortedProducts.filter(product => product.type.includes(this.selectedOption))
 
       return this.products
     }
@@ -99,17 +114,30 @@ export default {
   width: 100%;
 }
 
-.product__item span {
-  margin: 0 20px;
-}
-
 .product__block {
   display: flex;
   flex-direction: column;
   margin: 0 20px;
 }
 
+.product__block--row {
+  flex-direction: row;
+}
+
 .product__image {
   width: 100px;
+}
+
+.product__text {
+  font-size: 18px;
+}
+
+.product__text--small {
+  font-size: 14px;
+}
+
+.product__text--number {
+  color: #90a4ae;
+  margin-top: 5px;
 }
 </style>

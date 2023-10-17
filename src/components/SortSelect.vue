@@ -3,8 +3,8 @@
     <label for="type-select">Type:</label>
     <select @change="onChange($event)" id="type-select">
       <option value="" selected>All products</option>
-      <option v-for="product in getUniqTypes" :key="product.index" :value="product">
-        {{product}}
+      <option v-for="type in getUniqTypes" :key="type.index" :value="type">
+        {{type}}
       </option>
     </select>
   </div>
@@ -16,7 +16,7 @@ export default {
   props: { products: { type: Array } },
   computed: {
     getUniqTypes() {
-      let types = this.products.map(i => i.type);
+      let types = this.products.map(product => product.type);
 
       return [...new Set(types)];
     }
