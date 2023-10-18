@@ -1,5 +1,5 @@
 <template>
-  <nav class="navigation flex-center flex-column">
+  <nav class="navigation d-flex align-items-center flex-column">
     <router-link to="/" class="navigation__link">Orders</router-link>
     <router-link to="/products" class="navigation__link">Products</router-link>
   </nav>
@@ -20,6 +20,7 @@ export default {
 }
 
 .navigation__link {
+  padding: 0 5px;
   color: #36454d;
   font-weight: 600;
   margin-bottom: 15px;

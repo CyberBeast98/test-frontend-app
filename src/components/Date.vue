@@ -1,9 +1,9 @@
 <template>
-  <div class="date">
+  <div class="d-flex flex-column">
     <span v-if="isHeader">{{weekday}}</span>
-    <div class="flex-center">
+    <div class="d-flex align-items-center">
       <span>{{formattedDate}}</span>
-      <div v-if="isHeader" class="time">
+      <div v-if="isHeader" class="time d-flex align-items-center justify-content-end">
         <img src="./../assets/icons/time.svg" alt="time">
         <span>{{formattedTime}}</span>
       </div>
@@ -49,15 +49,7 @@ export default {
 </script>
 
 <style scoped>
-.date {
-  display: flex;
-  flex-direction: column;
-}
-
 .time {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   margin-left: 20px;
 }
 

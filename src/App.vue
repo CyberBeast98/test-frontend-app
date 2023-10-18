@@ -1,7 +1,7 @@
 <template>
-  <div class="full-width">
+  <div class="w-100">
     <TopMenu />
-    <div class="flex test">
+    <div class="d-flex test">
       <NavigationMenu />
       <router-view />
     </div>
@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import NavigationMenu from "@/components/Navigation";
-import TopMenu        from "@/components/TopMenu";
+import NavigationMenu from '@/components/Navigation';
+import TopMenu        from '@/components/TopMenu';
 
 export default {
   name: 'App',
@@ -38,37 +38,31 @@ export default {
   background-color: #f0f3f5;
   height: 100%;
 }
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0 !important;
+}
+
+ul {
+  padding: 0 !important;
+}
 
 li {
   list-style: none;
+  padding: 0;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+button:focus, select:focus {
+  box-shadow: none !important;
 }
 
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.full-width {
-  width: 100%;
 }
 
 .test {
