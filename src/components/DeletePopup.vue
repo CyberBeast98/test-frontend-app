@@ -1,24 +1,28 @@
 <template>
-  <div class="delete-popup">
+  <div class="delete-popup bg-white">
     <header class="delete-popup__header">
-      <h2>Are you sure you want to remove this product?</h2>
-      <button @click="closePopup">
-        <img src="../assets/icons/close.svg" class="delete-popup__close-button" alt="close">
+      <h4>Are you sure you want to remove this product?</h4>
+      <button
+          type="button"
+          class="delete-popup__close-button bg-white btn-close"
+          @click="closePopup">
       </button>
     </header>
     <div class="delete-popup__content">
       <img :src="product.photo" class="delete-popup__image" alt="product-image">
     </div>
-    <footer class="delete-popup__footer">
-      <button class="delete-popup__button delete-popup__button--cancel" @click="closePopup">Cancel</button>
-      <button class="delete-popup__button delete-popup__button--delete" @click="deleteProduct(id)">Delete</button>
+    <footer class="delete-popup__footer d-flex">
+      <button class="delete-popup__button text-light" @click="closePopup">Cancel</button>
+      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteProduct(id)">
+        Delete
+      </button>
     </footer>
   </div>
-  <div class="blur-background"></div>
+  <div class="blur-background bg-dark"></div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
   name: 'DeletePopup',
@@ -54,7 +58,6 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 700px;
-  background-color: #FFFFFF;
   border-radius: 4px;
   z-index: 2;
 }
@@ -69,7 +72,6 @@ export default {
 }
 
 .delete-popup__footer {
-  display: flex;
   justify-content: flex-end;
   background-color: #6A9739;
   padding: 20px;
@@ -80,12 +82,15 @@ export default {
   position: absolute;
   right: -20px;
   top: -20px;
-  width: 25px;
-  height: 25px;
-  padding: 10px;
-  background-color: #FFFFFF;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   box-shadow: 0 0 45px -12px rgba(0,0,0,0.75);
+  opacity: 1;
+}
+
+.delete-popup__close-button:hover {
+  opacity: 1;
 }
 
 .delete-popup__button {
@@ -93,13 +98,7 @@ export default {
   text-transform: uppercase;
 }
 
-.delete-popup__button--cancel {
-  color: #FFFFFF;
-}
-
 .delete-popup__button--delete {
-  color: red;
-  background-color: #FFFFFF;
   padding: 10px 20px;
   border-radius: 20px;
   margin-left: 15px;
@@ -111,8 +110,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
-  opacity: 60%;
+  opacity: 70%;
   z-index: 1;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <header class="top-menu">
+  <header class="top-menu position-sticky d-flex align-items-center justify-content-end">
     <DateComponent :date="new Date()" :isHeader="true"/>
   </header>
 </template>
 
 <script>
-import DateComponent from "@/components/Date";
+import DateComponent from '@/components/Date';
 
 export default {
   name: 'TopMenu',
@@ -15,10 +15,6 @@ export default {
 
 <style scoped>
 .top-menu {
-  position: sticky;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   height: 10vh;
   padding: 0 20px;
   background-color: #FFFFFF;

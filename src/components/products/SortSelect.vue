@@ -1,7 +1,7 @@
 <template>
-  <div class="flex-center">
+  <div class="d-flex align-items-center">
     <label for="type-select">Type:</label>
-    <select @change="onChange($event)" id="type-select">
+    <select class="form-select" aria-label="Default select example" @change="onChange($event)" id="type-select">
       <option value="" selected>All products</option>
       <option v-for="type in getUniqTypes" :key="type.index" :value="type">
         {{type}}
@@ -31,6 +31,7 @@ export default {
 
 <style scoped>
 select {
+  width: 250px;
   margin-left: 20px;
   padding: 5px 10px;
   outline: none;

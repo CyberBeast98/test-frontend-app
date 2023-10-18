@@ -1,5 +1,5 @@
 import { createStore }      from 'vuex'
-import { orders, products } from "@/front-end-data.json";
+import { orders, products } from '@/front-end-data.json';
 
 const store = createStore({
   state: {

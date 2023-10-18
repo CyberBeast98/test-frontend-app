@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Orders                             from "@/components/Orders";
-import Products                           from "@/components/products/Products";
+import Orders                             from '@/components/Orders';
+import Products                           from '@/components/products/Products';
 
 const routes = [
   {
