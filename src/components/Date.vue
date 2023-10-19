@@ -1,13 +1,7 @@
 <template>
-  <div class="d-flex flex-column">
-    <span v-if="isHeader">{{weekday}}</span>
-    <div class="d-flex align-items-center">
-      <span>{{formattedDate}}</span>
-      <div v-if="isHeader" class="time d-flex align-items-center justify-content-end">
-        <img src="./../assets/icons/time.svg" alt="time">
-        <span>{{formattedTime}}</span>
-      </div>
-    </div>
+  <div class="d-flex flex-column align-items-center date">
+    <span class="date-small">{{formattedDateSmall}}</span>
+    <span>{{formattedDate}}</span>
   </div>
 </template>
 
@@ -15,46 +9,27 @@
 export default {
   name: 'DateComponent',
   props: {
-    date: { type: String },
-    isHeader: { type: Boolean },
+    date: { type: String }
   },
   computed: {
     formattedDate() {
-      const date =  new Date(this.date).toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
-      });
+      const date =  new Date(this.date).toLocaleDateString('en-US', { day: 'numeric' });
+      const month =  new Date(this.date).toLocaleDateString('en-US', { month: 'short' });
+      const year =  new Date(this.date).toLocaleDateString('en-US', { year: 'numeric' });
 
-      return `${date}`;
+      return `${date} / ${month} / ${year}`
     },
-    weekday() {
-      const weekday =  new Date(this.date).toLocaleDateString('en-US', {
-        weekday: 'long',
-      });
+    formattedDateSmall() {
+      const date =  new Date(this.date).toLocaleDateString('en-US', { day: 'numeric' });
+      const month =  new Date(this.date).toLocaleDateString('en-US', { month: 'numeric' });
 
-      return `${weekday}`;
-    },
-    formattedTime() {
-      const time =  new Date(this.date).toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute:'2-digit'
-      });
-
-      return `${time}`;
+      return `${date} / ${month}`
     }
   }
 }
 </script>
-
 <style scoped>
-.time {
-  margin-left: 20px;
-}
-
-.time span {
-  margin-top: 1px;
-  margin-left: 5px;
+.date-small {
+  font-size: 14px;
 }
 </style>

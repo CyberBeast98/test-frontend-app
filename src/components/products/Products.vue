@@ -1,23 +1,24 @@
 <template>
-  <div class="container w-100 d-flex flex-column align-items-center">
-    <div class="counter__block">
-      <h2 class="counter">Products / {{ sorting.length }}</h2>
+  <div class="container d-flex flex-column">
+    <div class="counter__block d-flex align-items-center justify-content-start">
+      <CounterComponent :text="'Products'" :count="products.length"/>
       <SortSelect :products="products" />
     </div>
-    <ProductComponent :selectedOption="selectedOption" :sorting="sorting"/>
+    <ProductComponent :products="products" :selectedOption="selectedOption" :sorting="sorting"/>
     <DeletePopup v-if="isShowPopup"/>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import DeletePopup  from '@/components/DeletePopup';
-import SortSelect   from '@/components/products/SortSelect';
-import ProductComponent from "@/components/products/Product";
+import { mapState }     from 'vuex';
+import DeletePopup      from '@/components/DeletePopup';
+import SortSelect       from '@/components/products/SortSelect';
+import ProductComponent from '@/components/products/Product';
+import CounterComponent from '@/components/Counter';
 
 export default {
   name: 'ProductsComponent',
-  components: { ProductComponent, SortSelect, DeletePopup },
+  components: { CounterComponent, ProductComponent, SortSelect, DeletePopup },
   computed: {
     ...mapState({
       products(state) {
@@ -38,13 +39,6 @@ export default {
 
       return this.products
     }
-  },
-  methods: {
-    showPopup(id, product) {
-      this.$store.commit('setShowPopup', true);
-      this.$store.commit('setId', id);
-      this.$store.commit('setProduct', product);
-    }
   }
 }
 </script>
@@ -55,17 +49,16 @@ export default {
 }
 
 .counter__block {
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
   margin-bottom: 50px;
-}
-
-.counter {
-  margin-right: 30px;
 }
 
 .product__block p {
   margin-bottom: 0 !important;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 100px 20px 0;
+  }
 }
 </style>

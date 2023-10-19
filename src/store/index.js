@@ -5,7 +5,8 @@ const store = createStore({
   state: {
     orders: [],
     products: [],
-    id: null,
+    productId: null,
+    orderId: null,
     product: null,
     isShowPopup: false,
     selectedOption: '',
@@ -29,8 +30,11 @@ const store = createStore({
     setProducts(state, data) {
       state.products = data
     },
-    setId(state, data) {
-      state.id = data
+    setProductId(state, data) {
+      state.productId = data
+    },
+    setOrderId(state, data) {
+      state.orderId = data
     },
     setProduct(state, data) {
       state.product = data

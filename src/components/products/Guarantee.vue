@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'ProductDate',
+  name: 'GuaranteeDate',
   props: {
     date: { type: String },
     text: { type: String }

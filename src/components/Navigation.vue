@@ -1,7 +1,7 @@
 <template>
-  <nav class="navigation d-flex align-items-center flex-column">
-    <router-link to="/" class="navigation__link">Orders</router-link>
-    <router-link to="/products" class="navigation__link">Products</router-link>
+  <nav class="navigation d-flex align-items-center flex-column bg-white">
+    <router-link to="/" class="navigation__link fw-bold">Orders</router-link>
+    <router-link to="/products" class="navigation__link fw-bold">Products</router-link>
   </nav>
 </template>
 
@@ -14,7 +14,6 @@ export default {
 <style scoped>
 .navigation {
   min-width: 200px;
-  background-color: #FFFFFF;
   box-shadow: 10px 0 32px -7px rgba(0,0,0,0.75);
   padding: 30px 0;
 }
@@ -22,14 +21,14 @@ export default {
 .navigation__link {
   padding: 0 5px;
   color: #36454d;
-  font-weight: 600;
   margin-bottom: 15px;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   text-transform: uppercase;
   transition: 0.3s;
 }
 
-.navigation__link:hover {
-  border-bottom: 2px solid green;
+.navigation__link:hover,
+.navigation__link:focus  {
+  border-bottom: 3px solid #8bc34a;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="delete-popup bg-white">
+  <div class="delete-popup position-absolute bg-white">
     <header class="delete-popup__header">
       <h4>Are you sure you want to remove this product?</h4>
       <button
@@ -8,17 +8,18 @@
           @click="closePopup">
       </button>
     </header>
-    <div class="delete-popup__content">
+    <div class="delete-popup__content d-flex">
       <img :src="product.photo" class="delete-popup__image" alt="product-image">
+      <p>{{product.title}}</p>
     </div>
-    <footer class="delete-popup__footer d-flex">
+    <footer class="delete-popup__footer d-flex justify-content-end">
       <button class="delete-popup__button text-light" @click="closePopup">Cancel</button>
-      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteProduct(id)">
+      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteProduct(productId)">
         Delete
       </button>
     </footer>
   </div>
-  <div class="blur-background bg-dark"></div>
+  <div class="blur-background position-absolute w-100 h-100 bg-dark"></div>
 </template>
 
 <script>
@@ -26,23 +27,27 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'DeletePopup',
+  props: {
+    isOrderDelete: { type: Boolean}
+  },
   computed: {
     ...mapState({
       products(state) {
         return state.products;
       },
-      id(state) {
-        return state.id;
+      productId(state) {
+        return state.productId;
       },
       product(state) {
         return state.product;
-      }
+      },
     })
   },
   methods: {
     deleteProduct(id) {
       this.$store.commit('setProducts',  this.products.filter(product => product.id !== id));
       this.$store.commit('setShowPopup', false);
+      localStorage.products = JSON.stringify(this.products)
     },
     closePopup() {
       this.$store.commit('setShowPopup', false);
@@ -53,7 +58,6 @@ export default {
 
 <style scoped>
 .delete-popup {
-  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -71,8 +75,11 @@ export default {
   padding: 20px;
 }
 
+.delete-popup__content {
+  padding: 30px 20px;
+}
+
 .delete-popup__footer {
-  justify-content: flex-end;
   background-color: #6A9739;
   padding: 20px;
   border-radius: 0 0 4px 4px;
@@ -105,11 +112,8 @@ export default {
 }
 
 .blur-background {
-  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   opacity: 70%;
   z-index: 1;
 }
