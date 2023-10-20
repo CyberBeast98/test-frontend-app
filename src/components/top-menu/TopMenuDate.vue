@@ -1,9 +1,9 @@
 <template>
   <div class="d-flex flex-column">
-    <span v-if="isHeader">{{weekday}}</span>
+    <span>{{weekday}}</span>
     <div class="d-flex align-items-center">
       <span>{{formattedDate}}</span>
-      <div v-if="isHeader" class="time d-flex align-items-center justify-content-end">
+      <div class="time d-flex align-items-center justify-content-end">
         <img src="../../assets/icons/time.svg" alt="time">
         <span>{{formattedTime}}</span>
       </div>
@@ -28,9 +28,7 @@ export default {
       return `${date}`;
     },
     weekday() {
-      const weekday =  new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
-      });
+      const weekday =  new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
       return `${weekday}`;
     },

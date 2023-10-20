@@ -1,6 +1,6 @@
 <template>
   <div class="date d-flex flex-column align-items-center">
-    <span class="date-small">{{formattedDateSmall}}</span>
+    <span class="date--small">{{formattedDateSmall}}</span>
     <span>{{formattedDate}}</span>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
 }
 </script>
 <style scoped>
-.date-small {
+.date--small {
   font-size: 14px;
 }
 </style>

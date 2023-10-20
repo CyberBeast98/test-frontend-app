@@ -10,14 +10,19 @@
     </header>
     <div v-if="!isOrderDelete" class="delete-popup__content d-flex">
       <img :src="product.photo" class="delete-popup__image" alt="product-image">
-      <p>{{product.title}}</p>
+      <div>
+        <p>{{product.title}}</p>
+        <p>{{product.serialNumber}}</p>
+      </div>
     </div>
     <div v-else class="delete-popup__content d-flex">
       <p>{{order.title}}</p>
     </div>
     <footer class="delete-popup__footer d-flex justify-content-end">
-      <button class="delete-popup__button text-light" @click="closePopup">Cancel</button>
-      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteEvent(setId)">
+      <button class="delete-popup__button text-light text-uppercase" @click="closePopup">Cancel</button>
+      <button
+          class="delete-popup__button delete-popup__button--delete text-danger text-uppercase  bg-white"
+          @click="deleteEvent(setId)">
         Delete
       </button>
     </footer>
@@ -58,7 +63,7 @@ export default {
     deleteProduct(id) {
       this.$store.commit('setProducts',  this.products.filter(product => product.id !== id));
       this.$store.commit('setShowProductPopup', false);
-      localStorage.products = JSON.stringify(this.products)
+      localStorage.products = JSON.stringify(this.products);
     },
     deleteOrder(id) {
       this.$store.commit('setOrders',  this.orders.filter(order => order.id !== id));
@@ -86,12 +91,14 @@ export default {
 }
 
 .delete-popup__image {
-  width: 50px;
+  width: 100px;
+  margin-right: 20px;
+  object-fit: contain;
 }
 
 .delete-popup__header {
   position: relative;
-  padding: 20px;
+  padding: 20px 20px 0;
 }
 
 .delete-popup__content {
@@ -121,7 +128,6 @@ export default {
 
 .delete-popup__button {
   font-size: 14px;
-  text-transform: uppercase;
 }
 
 .delete-popup__button--delete {

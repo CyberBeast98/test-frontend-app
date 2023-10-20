@@ -4,7 +4,7 @@
         v-for="product in sorting"
         :key="product.id"
         class="product__item d-flex align-items-center justify-content-between"
-        :class="{'product__item--bordered': true}">
+        :class="{'product__item--bordered': isOrderPage}">
       <div class="product__block d-flex flex-row">
         <img class="product__image" :src="product.photo" alt="photo">
         <div class="product__block d-flex flex-column">
@@ -12,7 +12,7 @@
           <span class="product__text product__text--number">{{`SN-${product.serialNumber}`}}</span>
         </div>
       </div>
-      <div v-if="!isOrderPage" class="product__block-info d-flex align-items-center justify-content-between">
+      <div class="product__block-info d-flex align-items-center justify-content-between">
         <div class="product__block">
           <span class="product__text">{{product.type}}</span>
         </div>
@@ -51,7 +51,8 @@ export default {
   components: {DateComponent, GuaranteeDate },
   props: {
     selectedOption: { type: String },
-    sorting: { type: Array }
+    sorting: { type: Array },
+    isOrderPage: { type: Boolean }
   },
   methods: {
     showPopup(id, product) {
@@ -69,6 +70,16 @@ export default {
   padding: 20px;
   background-color: #FFFFFF;
   border-radius: 4px;
+}
+
+.product__item--bordered {
+  margin: 0;
+  border-bottom: 1px solid #CFD8DC;
+  border-radius: 0;
+}
+
+.product__item--bordered:first-child {
+  border-top: 1px solid #CFD8DC;
 }
 
 .product__block-info {
@@ -90,6 +101,7 @@ export default {
 .product__image {
   width: 100px;
   margin-right: 20px;
+  object-fit: contain;
 }
 
 .product__text {

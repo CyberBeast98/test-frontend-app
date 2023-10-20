@@ -9,9 +9,9 @@
 </template>
 
 <script>
+import { mapState }   from 'vuex';
 import NavigationMenu from '@/components/Navigation';
 import TopMenu        from '@/components/top-menu/TopMenu';
-import { mapState }   from "vuex";
 
 export default {
   name: 'App',

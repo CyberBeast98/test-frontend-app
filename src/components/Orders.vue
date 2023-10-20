@@ -1,7 +1,11 @@
 <template>
-  <div class="order__container w-100 d-flex flex-column">
-    <CounterComponent :text="'Orders'" :count="orders.length" class="counter"/>
-    <div class="d-flex">
+  <div class="order__container w-100 d-flex flex-column" :class="{'order__container--big': isOpen}">
+    <CounterComponent
+        v-if="orders.length > 0"
+        :text="'Orders'"
+        :count="orders.length"
+        class="counter"/>
+    <div v-if="orders.length > 0" class="d-flex">
       <ul class="order" :class="{'order--short': isOpen }">
         <li
             v-for="order in orders"
@@ -12,7 +16,10 @@
             <span>{{order.description}}</span>
           </div>
           <div class="order__block d-flex align-items-center justify-content-between">
-            <button class="order__button" @click="order.getProducts(); showButton(order.id)">
+            <button
+                v-if="products.length > 0"
+                class="order__button"
+                @click="order.getProducts(); showButton(order.id)">
               <i class="bi bi-card-list"></i>
             </button>
             <p class="d-flex flex-column">
@@ -29,14 +36,14 @@
           </div>
         </li>
       </ul>
-      <div v-if="isOpen" class="products position-relative bg-white">
+      <div v-if="isOpen" class="products position-relative w-100 bg-white">
         <h3>'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'</h3>
         <button
             type="button"
             class="products__close-button bg-white btn-close"
             @click="closeOrders">
         </button>
-        <ProductComponent :sorting="products"/>
+        <ProductComponent :sorting="products" :isOrderPage="true"/>
       </div>
       <DeletePopup
           v-if="isShowOrderPopup"
@@ -45,29 +52,29 @@
           :orderId="orderId"/>
       <DeletePopup v-if="isShowProductPopup"/>
     </div>
+    <EmptyComponent v-else :page="'Orders'"/>
   </div>
 </template>
 
 <script>
 import { mapState }     from 'vuex';
-import DateComponent    from '@/components/top-menu/TopMenuDate';
+import DateComponent    from '@/components/Date';
 import ProductComponent from '@/components/products/Product';
 import CounterComponent from '@/components/Counter';
 import DeletePopup      from '@/components/DeletePopup';
+import EmptyComponent   from '@/components/Empty';
 
 export default {
   name: 'OrdersComponent',
   components: {
+    EmptyComponent,
     CounterComponent,
     ProductComponent,
     DateComponent,
     DeletePopup
   },
   data() {
-    return {
-      isOpen: false,
-      show: false
-    }
+    return { isOpen: false }
   },
   computed: {
     ...mapState({
@@ -96,7 +103,6 @@ export default {
     closeOrders() {
       this.$store.commit('setOrderId', null);
       this.isOpen = false;
-      this.show = false;
     },
     showPopup(id, order) {
       this.$store.commit('setShowOrderPopup', true);
@@ -109,7 +115,11 @@ export default {
 
 <style scoped>
 .order__container {
-  padding: 100px 150px 0;
+  padding: 100px 250px 0;
+}
+
+.order__container--big {
+  padding: 100px 50px 0;
 }
 
 .order {

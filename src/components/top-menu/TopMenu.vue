@@ -3,7 +3,7 @@
     <router-link to="/">
       <img src="../../assets/logo.png" alt="logo">
     </router-link>
-    <TopMenuDate :isHeader="true"/>
+    <TopMenuDate />
   </header>
 </template>
 
@@ -12,7 +12,7 @@ import TopMenuDate from '@/components/top-menu/TopMenuDate';
 
 export default {
   name: 'TopMenu',
-  components: {TopMenuDate },
+  components: { TopMenuDate },
 }
 </script>
 

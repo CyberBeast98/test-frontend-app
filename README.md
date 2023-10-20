@@ -10,10 +10,12 @@ npm install
 npm run serve
 ```
 ###What is done
-1. Routing;
-2. VueX;
-3. Added bootstrap and bootstrap icons;
-4. Sorting on products page;
-5. Deleting orders and products;
-6. Opening orders and showing products;
-7. Page layout;
+1. Page layout;
+2. Routing;
+3. VueX;
+4. Added bootstrap and bootstrap icons;
+5. Sorting on products page;
+6. Deleting orders and products;
+7. Opening orders and showing products;
+8. Orders/Products counter;
+9. Empty page component;

@@ -3,8 +3,8 @@
     <div class="navigation__block">
       <img src="../assets/user-img.jpg" alt="test" class="w-100 h-100">
     </div>
-    <router-link to="/" class="navigation__link fw-bold">Orders</router-link>
-    <router-link to="/products" class="navigation__link fw-bold">Products</router-link>
+    <router-link to="/" class="navigation__link text-uppercase fw-bold">Orders</router-link>
+    <router-link to="/products" class="navigation__link text-uppercase fw-bold">Products</router-link>
   </nav>
 </template>
 
@@ -38,7 +38,6 @@ export default {
   margin-bottom: 15px;
   padding: 0 5px;
   color: #36454d;
-  text-transform: uppercase;
   border-bottom: 3px solid transparent;
   transition: 0.3s;
 }
