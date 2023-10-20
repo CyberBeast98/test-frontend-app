@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column align-items-center date">
+  <div class="date d-flex flex-column align-items-center">
     <span class="date-small">{{formattedDateSmall}}</span>
     <span>{{formattedDate}}</span>
   </div>

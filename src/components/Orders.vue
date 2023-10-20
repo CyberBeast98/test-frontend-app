@@ -1,6 +1,6 @@
 <template>
   <div class="order__container w-100 d-flex flex-column">
-    <CounterComponent :text="'Orders'" :count="orders.length"/>
+    <CounterComponent :text="'Orders'" :count="orders.length" class="counter"/>
     <div class="d-flex">
       <ul class="order" :class="{'order--short': isOpen }">
         <li
@@ -21,10 +21,10 @@
             </p>
             <DateComponent :date="order.date"/>
           </div>
-          <button v-if="!isOpen" class="order__button">
+          <button v-if="!isOpen" class="order__button" @click="showPopup(order.id, order)">
             <i class="bi bi-trash"></i>
           </button>
-          <div v-if="orderId === order.id" class="arrow-img d-flex align-items-center justify-content-center">
+          <div v-if="orderId === order.id && isOpen" class="arrow d-flex align-items-center justify-content-center">
             <img src="./../assets/icons/arrow-right.svg" alt="arrow-img">
           </div>
         </li>
@@ -36,9 +36,14 @@
             class="products__close-button bg-white btn-close"
             @click="closeOrders">
         </button>
-        <ProductComponent :sorting="products" :isOrderPage="true"/>
-        <DeletePopup v-if="isShowPopup"/>
+        <ProductComponent :sorting="products"/>
       </div>
+      <DeletePopup
+          v-if="isShowOrderPopup"
+          :isOrderDelete="true"
+          :orders="orders"
+          :orderId="orderId"/>
+      <DeletePopup v-if="isShowProductPopup"/>
     </div>
   </div>
 </template>
@@ -69,14 +74,17 @@ export default {
       orders(state) {
         return state.orders;
       },
+      orderId(state) {
+        return state.orderId;
+      },
       products(state) {
         return state.products
       },
-      isShowPopup(state) {
-        return state.isShowPopup;
+      isShowOrderPopup(state) {
+        return state.isShowOrderPopup;
       },
-      orderId(state) {
-        return state.orderId;
+      isShowProductPopup(state) {
+        return state.isShowProductPopup;
       }
     })
   },
@@ -89,6 +97,11 @@ export default {
       this.$store.commit('setOrderId', null);
       this.isOpen = false;
       this.show = false;
+    },
+    showPopup(id, order) {
+      this.$store.commit('setShowOrderPopup', true);
+      this.$store.commit('setOrderId', id);
+      this.$store.commit('setOrder', order);
     }
   }
 }
@@ -137,13 +150,21 @@ export default {
   border: 1px solid #CFD8DC;
 }
 
-.arrow-img {
+.products h3 {
+  margin-bottom: 30px !important;
+}
+
+.counter {
+  margin-bottom: 50px;
+}
+
+.arrow {
   width: 50px;
   height: 100%;
   background-color: #CFD8DC;
 }
 
-.arrow-img img {
+.arrow img {
   width: 50%;
   height: 50%;
 }

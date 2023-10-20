@@ -43,20 +43,19 @@
 </template>
 
 <script>
-import GuaranteeDate from "@/components/products/Guarantee";
-import DateComponent from "@/components/Date";
+import GuaranteeDate from '@/components/products/Guarantee';
+import DateComponent from '@/components/Date';
 
 export default {
   name: 'ProductComponent',
   components: {DateComponent, GuaranteeDate },
   props: {
     selectedOption: { type: String },
-    sorting: { type: Array },
-    isOrderPage: { type: Boolean }
+    sorting: { type: Array }
   },
   methods: {
     showPopup(id, product) {
-      this.$store.commit('setShowPopup', true);
+      this.$store.commit('setShowProductPopup', true);
       this.$store.commit('setProductId', id);
       this.$store.commit('setProduct', product);
     }
@@ -70,10 +69,6 @@ export default {
   padding: 20px;
   background-color: #FFFFFF;
   border-radius: 4px;
-}
-
-.product__item--bordered {
-
 }
 
 .product__block-info {
@@ -109,6 +104,5 @@ export default {
   color: #90a4ae;
   margin-top: 5px;
 }
-
 </style>
 

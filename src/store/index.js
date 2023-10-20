@@ -5,10 +5,12 @@ const store = createStore({
   state: {
     orders: [],
     products: [],
-    productId: null,
-    orderId: null,
+    order: null,
     product: null,
-    isShowPopup: false,
+    orderId: null,
+    productId: null,
+    isShowProductPopup: false,
+    isShowOrderPopup: false,
     selectedOption: '',
     sortedProducts: []
   },
@@ -39,8 +41,14 @@ const store = createStore({
     setProduct(state, data) {
       state.product = data
     },
-    setShowPopup(state, data) {
-      state.isShowPopup = data
+    setOrder(state, data) {
+      state.order = data
+    },
+    setShowProductPopup(state, data) {
+      state.isShowProductPopup = data
+    },
+    setShowOrderPopup(state, data) {
+      state.isShowOrderPopup = data
     },
     setSortedProducts(state, data) {
       state.sortedProducts = data

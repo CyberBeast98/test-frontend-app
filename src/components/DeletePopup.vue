@@ -8,13 +8,16 @@
           @click="closePopup">
       </button>
     </header>
-    <div class="delete-popup__content d-flex">
+    <div v-if="!isOrderDelete" class="delete-popup__content d-flex">
       <img :src="product.photo" class="delete-popup__image" alt="product-image">
       <p>{{product.title}}</p>
     </div>
+    <div v-else class="delete-popup__content d-flex">
+      <p>{{order.title}}</p>
+    </div>
     <footer class="delete-popup__footer d-flex justify-content-end">
       <button class="delete-popup__button text-light" @click="closePopup">Cancel</button>
-      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteProduct(productId)">
+      <button class="delete-popup__button delete-popup__button--delete text-danger bg-white" @click="deleteEvent(setId)">
         Delete
       </button>
     </footer>
@@ -28,7 +31,9 @@ import { mapState } from 'vuex';
 export default {
   name: 'DeletePopup',
   props: {
-    isOrderDelete: { type: Boolean}
+    isOrderDelete: { type: Boolean },
+    orders: { type: Array },
+    orderId: { type: Number }
   },
   computed: {
     ...mapState({
@@ -41,16 +46,30 @@ export default {
       product(state) {
         return state.product;
       },
-    })
+      order(state) {
+        return state.order;
+      }
+    }),
+    setId() {
+      return this.isOrderDelete ? this.orderId : this.productId
+    }
   },
   methods: {
     deleteProduct(id) {
       this.$store.commit('setProducts',  this.products.filter(product => product.id !== id));
-      this.$store.commit('setShowPopup', false);
+      this.$store.commit('setShowProductPopup', false);
       localStorage.products = JSON.stringify(this.products)
     },
+    deleteOrder(id) {
+      this.$store.commit('setOrders',  this.orders.filter(order => order.id !== id));
+      this.$store.commit('setShowOrderPopup', false);
+    },
+    deleteEvent(id) {
+      this.isOrderDelete ? this.deleteOrder(id) : this.deleteProduct(id)
+    },
     closePopup() {
-      this.$store.commit('setShowPopup', false);
+      this.$store.commit('setShowProductPopup', false);
+      this.$store.commit('setShowOrderPopup', false);
     }
   }
 }

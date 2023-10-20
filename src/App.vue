@@ -17,20 +17,26 @@ export default {
   name: 'App',
   components: {TopMenu, NavigationMenu },
   mounted() {
+    this.getProducts();
     this.$store.dispatch('getOrders');
-    if (localStorage.products) {
-      this.products.push(...JSON.parse(localStorage.products));
-    } else {
-      this.$store.dispatch('getProducts');
-    }
     this.$store.dispatch('getSortedProducts');
   },
   computed: {
     ...mapState({
       products(state) {
         return state.products
+      },
+      orders(state) {
+        return state.orders
       }
     })
+  },
+  methods: {
+    getProducts() {
+      if (localStorage.products) return this.products.push(...JSON.parse(localStorage.products));
+
+      return this.$store.dispatch('getProducts');
+    }
   }
 }
 </script>
