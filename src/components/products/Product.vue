@@ -35,8 +35,8 @@
         </div>
         <DateComponent :date="product.date"/>
       </div>
-      <button @click="showPopup(product.id, product)">
-        <img src="../../assets/icons/delete.svg" alt="delete-img">
+      <button class="product__button" @click="showPopup(product.id, product)">
+        <i class="bi bi-trash"></i>
       </button>
     </li>
   </ul>
@@ -110,11 +110,16 @@ export default {
 
 .product__text--small {
   font-size: 14px;
+  margin-left: 3px;
 }
 
 .product__text--number {
   color: #90a4ae;
   margin-top: 5px;
+}
+
+.product__button {
+  font-size: 24px;
 }
 </style>
 
